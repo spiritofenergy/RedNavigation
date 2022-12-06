@@ -2,7 +2,6 @@ package com.kodex.rednavigation.drawer
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.layout.R
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -15,16 +14,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.kodex.rednavigation.R
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.kodex.rednavigation.NavDrawerItem
+import com.kodex.rednavigation.MainViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 
 @Composable
-fun Drawer(scope: CoroutineScope, scaffoldState: ScaffoldState, navController: NavController) {
+fun Drawer(scope: CoroutineScope, scaffoldState: ScaffoldState, navController: NavController, viewModel: MainViewModel) {
     val items = listOf(
         NavDrawerItem.Home,
         NavDrawerItem.Music,
@@ -36,8 +37,8 @@ fun Drawer(scope: CoroutineScope, scaffoldState: ScaffoldState, navController: N
     Column {
         // Header
         Image(
-            painter = painterResource(id = com.kodex.rednavigation.R.drawable.logo),
-            contentDescription = com.kodex.rednavigation.R.drawable.logo.toString(),
+            painter = painterResource(id = R.drawable.logo),
+            contentDescription = R.drawable.logo.toString(),
             modifier = Modifier
                 .height(100.dp)
                 .fillMaxWidth()
@@ -69,6 +70,7 @@ fun Drawer(scope: CoroutineScope, scaffoldState: ScaffoldState, navController: N
                     // Restore state when reselecting a previously selected item
                     restoreState = true
                 }
+
                 // Close drawer
                 scope.launch {
                     scaffoldState.drawerState.close()
@@ -95,5 +97,5 @@ fun DrawerPreview() {
     val scope = rememberCoroutineScope()
     val scaffoldState = rememberScaffoldState(rememberDrawerState(DrawerValue.Closed))
     val navController = rememberNavController()
-    Drawer(scope = scope, scaffoldState = scaffoldState, navController = navController)
+    Drawer(scope = scope, scaffoldState = scaffoldState, navController = navController, viewModel = viewModel())
 }
