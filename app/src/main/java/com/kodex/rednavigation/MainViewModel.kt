@@ -1,5 +1,6 @@
 package com.kodex.rednavigation
 
+import android.app.Application
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,8 +13,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(private val repository: ApiRepository): ViewModel() {
+class MainViewModel @Inject constructor(private val repository: ApiRepository, application: Application): ViewModel(){
 
+    val context = application
     private val _allMovies = MutableLiveData<List<Movies>>()
 
     val allMovies: MutableLiveData<List<Movies>>
@@ -31,3 +33,5 @@ class MainViewModel @Inject constructor(private val repository: ApiRepository): 
         }
     }
 }
+
+fun initDatabase(type: String) {}

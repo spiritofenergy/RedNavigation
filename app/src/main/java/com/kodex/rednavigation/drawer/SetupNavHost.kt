@@ -1,5 +1,6 @@
 package com.kodex.rednavigation.drawer
 
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -25,11 +26,12 @@ sealed class Screens(val route: String) {
 }
 */
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun Navigation(navController: NavHostController, viewModel: MainViewModel) {
-    NavHost(navController, startDestination = NavDrawerItem.Movies.route) {
+    NavHost(navController, startDestination = NavDrawerItem.Home.route) {
         composable(NavDrawerItem.Home.route) {
-            HomeScreen()
+            HomeScreen(navController = navController, viewModel = viewModel)
         }
         composable(NavDrawerItem.Music.route) {
             MusicScreen()
@@ -46,7 +48,7 @@ fun Navigation(navController: NavHostController, viewModel: MainViewModel) {
                 itemId = backStackEntry?.arguments?.getString("Id") ?: "1" )
         }
         composable(NavDrawerItem.Profile.route) {
-            ProfileScreen()
+            ProfileScreen(navController = navController, viewModel = viewModel)
         }
         composable(NavDrawerItem.Settings.route) {
             SettingsScreen()

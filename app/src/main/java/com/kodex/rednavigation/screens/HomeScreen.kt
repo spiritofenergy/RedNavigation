@@ -14,10 +14,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.kodex.rednavigation.MainViewModel
 import com.kodex.rednavigation.R
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navController: NavHostController, viewModel: MainViewModel) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -38,5 +42,5 @@ fun HomeScreen() {
 @Preview(showBackground = true)
 @Composable
 fun HomeScreenPreview() {
-    HomeScreen()
+    HomeScreen(navController = rememberNavController(), viewModel = viewModel())
 }

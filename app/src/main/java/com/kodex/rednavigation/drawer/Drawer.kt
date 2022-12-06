@@ -79,7 +79,7 @@ fun Drawer(scope: CoroutineScope, scaffoldState: ScaffoldState, navController: N
         }
         Spacer(modifier = Modifier.weight(1f))
         Text(
-            text = "Developed by John Codeos",
+            text = "Вы не зарегистрированы!",
             color = Color.White,
             textAlign = TextAlign.Center,
             fontWeight = FontWeight.Bold,
