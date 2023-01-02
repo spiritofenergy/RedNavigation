@@ -63,7 +63,7 @@ object Constants {
         const val LOGIN_TEXT = "Email"
         const val PASSWORD_TEX = "Пароль"
         const val ADD_BUSINESS = "Добавить бизнес"
-        const val TITLE = "Название"
+        const val TITLE = "title"
         const val ACTIVITY = "Вид деятельности"
         const val ADD = "Добавить"
         const val IS_REGISTERED = "Вы зарегистрированы        "

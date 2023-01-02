@@ -19,9 +19,7 @@ import com.kodex.rednavigation.utils.PASSWORD
 class AppFirebaseRepository : DatabaseRepository {
 
     private val auth = FirebaseAuth.getInstance()
-    //val database = Firebase.database("https://chatfirebase-e00a0-default-rtdb.europe-west1.firebasedatabase.app")
-
-    private val database = Firebase.database.reference
+   private val database = Firebase.database("https://rednavigation-fd767-default-rtdb.europe-west1.firebasedatabase.app").reference
      .child(auth.currentUser?.uid.toString())
 
     override val readAll: LiveData<List<Note>> = AllNotesLiveData()

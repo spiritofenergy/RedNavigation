@@ -21,12 +21,6 @@ class MainActivity : ComponentActivity() {
     private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        auth = Firebase.auth
-        val database = Firebase.database(
-            "https://rednavigation-fd767-default-rtdb.europe-west1.firebasedatabase.app")
-        val myRef = database.getReference("message")
-        myRef.setValue("Hello,iio World!")
         setContent {
             RedNavigationTheme{
                 val navController = rememberNavController()

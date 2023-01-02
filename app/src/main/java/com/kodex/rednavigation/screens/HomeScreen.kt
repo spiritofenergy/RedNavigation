@@ -13,6 +13,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -28,6 +29,7 @@ import com.google.firebase.ktx.Firebase
 import com.kodex.rednavigation.MainViewModel
 import com.kodex.rednavigation.R
 import com.kodex.rednavigation.drawer.NavRoute
+import com.kodex.rednavigation.drawer.NavRoute.Books.title
 import com.kodex.rednavigation.model.Note
 import com.kodex.rednavigation.ui.theme.RedNavigationTheme
 import com.kodex.rednavigation.utils.Constants
@@ -47,6 +49,7 @@ fun HomeScreen(navController: NavHostController, viewModel: MainViewModel) {
     val notes = viewModel.reedAllNotes().observeAsState(listOf()).value
     var auth: FirebaseAuth = Firebase.auth
     title = auth.currentUser?.displayName.toString()
+    Log.d("checkData1", "$notes")
 
     val context = LocalContext.current
     lateinit var mViewModel: MainViewModel
@@ -69,11 +72,18 @@ fun HomeScreen(navController: NavHostController, viewModel: MainViewModel) {
                     }
                 }
             ) {
-                LazyColumn {
+
+                LazyColumn(modifier = Modifier.padding(vertical = 60.dp)){
+                    Log.d("checkData2", "$notes")
+                    items(notes) { note ->
+                        NoteItem( note = note, navController = navController)
+                    }
+                }
+               /* LazyColumn {
                     items(notes) { note ->
                         NoteItem(note = note,navController = navController)
                     }
-                }
+                }*/
             }
         }
         ModalBottomSheetLayout(
@@ -127,7 +137,39 @@ fun HomeScreen(navController: NavHostController, viewModel: MainViewModel) {
         }
     }
 
+@Composable
+fun NoteItem(note: Note, navController: NavHostController) {
+    val noteId  = null
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 4.dp, horizontal = 4.dp),
+        elevation = 6.dp
+    ){
+        Column(
+            modifier = Modifier
+                .padding(vertical = 4.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(
+                text = note.title,
+                fontSize = 24.sp,
+                color = Color.Black,
+                fontWeight = FontWeight.Bold
+            )
+            Text(
+                color = Color.Black,
+                text = note.subtitle,
 
+                )
+        }
+    }
+
+
+}
+
+
+/*
 
 @Composable
 fun NoteItem(note: Note, navController: NavHostController) {
@@ -197,4 +239,4 @@ fun NoteItem(note: Note, navController: NavHostController) {
     }
 
 
-}
+}*/
