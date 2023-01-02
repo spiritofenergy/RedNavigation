@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "164037452208",
+    "firebase_url": "https://rednavigation-fd767-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "rednavigation-fd767",
+    "storage_bucket": "rednavigation-fd767.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:164037452208:android:dba12612bcc3ccccc0f675",
+        "android_client_info": {
+          "package_name": "com.kodex.rednavigation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "164037452208-v2f5lkkor2nfj6k1e4uvbveeba262c3a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kodex.rednavigation",
+            "certificate_hash": "173f520d58a89c6f4d1d0fe3b8060c71a51d0207"
+          }
+        },
+        {
+          "client_id": "164037452208-8llc2gebnff3nsuso46daoppm2jtd0q6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2W_jKkOL7XSlGc2JXBGcgbc0nW1ulVnw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "164037452208-8llc2gebnff3nsuso46daoppm2jtd0q6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

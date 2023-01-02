@@ -24,6 +24,8 @@ object Constants {
     object Screens {
         const val SPLASH_SCREEN = "splash_screen"
         const val MAIN_SCREEN = "main_screen"
+        const val SIGNIN_SCREEN = "signin_screen"
+        const val HOME_SCREEN = "home_screen"
         const val FOOD_SCREEN = "food_screen"
         const val MUSIC_SCREEN = "music_screen"
         const val DETAIL_SCREEN = "detail_screen"
@@ -43,7 +45,6 @@ object Constants {
         const val NOTE_SUBTITLE = "Подробнее"
         const val ADD_NOTE = "Новое дело"
         const val SAFE_NOTE = "Сохранить дело"
-        const val TITLE = "title"
         const val SUBTITLE = "subtitle"
         const val WAT_WELL_WE_YSE = "Сохранить"
         const val ROOM_DATABASE = "Room_database"
@@ -58,11 +59,34 @@ object Constants {
         const val EMPTY = ""
         const val SAFE_ROOM = "Room"
         const val SAFE_FIREBASE = "Firebase"
-        const val SING_IN = "Sign in"
-        const val LOGIN_TEXT = "Логин"
+        const val SING_IN = "Регистрация"
+        const val LOGIN_TEXT = "Email"
         const val PASSWORD_TEX = "Пароль"
+        const val ADD_BUSINESS = "Добавить бизнес"
+        const val TITLE = "Название"
+        const val ACTIVITY = "Вид деятельности"
+        const val ADD = "Добавить"
+        const val IS_REGISTERED = "Вы зарегистрированы        "
+        const val NOT_REGISTERED = "Вы не зарегистрированы       "
     }
 
+}
+
+
+data class LoadingState private constructor(val status: Status, val msg: String? = null){
+    companion object{
+        val LOADED = LoadingState(Status.SUCCESS)
+        val IDLE = LoadingState(Status.IDLE)
+        val LOADING = LoadingState(Status.RUNNING)
+        fun error(msg: String?) = LoadingState(Status.FAILED, msg)
+
+    }
+    enum class Status {
+        RUNNING,
+        SUCCESS,
+        FAILED,
+        IDLE
+    }
 }
 @Composable
 fun HtmlText(html: String, modifier : Modifier = Modifier){

@@ -1,4 +1,4 @@
-package com.kodex.rednavigation.data.modals
+package com.kodex.rednavigation.database.modals
 
 data class Schedule(
     val days: List<String>,

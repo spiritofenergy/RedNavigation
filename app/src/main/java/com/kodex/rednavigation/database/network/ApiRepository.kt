@@ -1,4 +1,4 @@
-package com.kodex.rednavigation.data.network
+package com.kodex.rednavigation.database.network
 
 import javax.inject.Inject
 

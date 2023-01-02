@@ -1,4 +1,4 @@
-package com.kodex.rednavigation.data.modals
+package com.kodex.rednavigation.database.modals
 
 data class Links(
     val previousepisode: Previousepisode,

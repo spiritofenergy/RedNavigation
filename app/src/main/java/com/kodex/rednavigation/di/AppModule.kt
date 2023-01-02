@@ -1,6 +1,6 @@
 package com.kodex.rednavigation.di
 
-import com.kodex.rednavigation.data.network.ApiService
+import com.kodex.rednavigation.database.network.ApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

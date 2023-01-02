@@ -1,6 +1,5 @@
 package com.kodex.rednavigation.screens
 
-import android.text.method.MovementMethod
 import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -14,12 +13,10 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -28,10 +25,9 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberImagePainter
 import com.kodex.rednavigation.R
-import com.kodex.rednavigation.data.modals.Movies
-import com.kodex.rednavigation.utils.Constants
+import com.kodex.rednavigation.database.modals.Movies
 import com.kodex.rednavigation.MainViewModel
-import com.kodex.rednavigation.drawer.NavDrawerItem
+import com.kodex.rednavigation.drawer.NavRoute
 
 
 @Composable
@@ -48,7 +44,7 @@ fun MoviesScreen(navController: NavController, viewModel: MainViewModel) {
     ) {
         LazyColumn{
             items(allMovies.take(40)) { item ->
-                MovieItem(
+                NoteItem(
                     item = item,
                     navController= navController)
             }
@@ -59,13 +55,13 @@ fun MoviesScreen(navController: NavController, viewModel: MainViewModel) {
 
 
 @Composable
-fun MovieItem(item: Movies, navController: NavController) {
+fun NoteItem(item: Movies, navController: NavController) {
     Card(
         elevation = 4.dp,
         modifier = Modifier
             .padding(top = 8.dp)
             .clickable {
-                navController.navigate(NavDrawerItem.Detail.route + "/${item.id}")
+                navController.navigate(NavRoute.Detail.route + "/${item.id}")
             }
     ) {
         // Создаем строку в списке

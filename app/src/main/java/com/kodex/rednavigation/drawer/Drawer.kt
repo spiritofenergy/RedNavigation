@@ -19,6 +19,9 @@ import com.kodex.rednavigation.R
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.kodex.rednavigation.MainViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -26,13 +29,15 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun Drawer(scope: CoroutineScope, scaffoldState: ScaffoldState, navController: NavController, viewModel: MainViewModel) {
+    var auth: FirebaseAuth = Firebase.auth
+
     val items = listOf(
-        NavDrawerItem.Home,
-        NavDrawerItem.Music,
-        NavDrawerItem.Movies,
-        NavDrawerItem.Books,
-        NavDrawerItem.Profile,
-        NavDrawerItem.Settings
+        NavRoute.Home,
+        NavRoute.Music,
+        NavRoute.Movies,
+        NavRoute.Books,
+        NavRoute.Profile,
+        NavRoute.Settings
     )
     Column {
         // Header
@@ -54,7 +59,9 @@ fun Drawer(scope: CoroutineScope, scaffoldState: ScaffoldState, navController: N
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
         items.forEach { item ->
-            DrawerItem(item = item, selected = currentRoute == item.route, onItemClick = {
+            DrawerItem(item = item,
+                selected = currentRoute == item.route,
+                onItemClick = {
                 navController.navigate(item.route) {
                     // Pop up to the start destination of the graph to
                     // avoid building up a large stack of destinations

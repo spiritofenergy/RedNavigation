@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.sp
 
 
 @Composable
-fun DrawerItem(item: NavDrawerItem, selected: Boolean, onItemClick: (NavDrawerItem) -> Unit) {
+fun DrawerItem(item: NavRoute, selected: Boolean, onItemClick: (NavRoute) -> Unit) {
     val background = if (selected) R.color.colorPrimaryDark else android.R.color.transparent
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -53,5 +53,5 @@ fun DrawerItem(item: NavDrawerItem, selected: Boolean, onItemClick: (NavDrawerIt
 @Preview(showBackground = false)
 @Composable
 fun DrawerItemPreview() {
-    DrawerItem(item = NavDrawerItem.Home, selected = false, onItemClick = {})
+    DrawerItem(item = NavRoute.Home, selected = false, onItemClick = {})
 }
