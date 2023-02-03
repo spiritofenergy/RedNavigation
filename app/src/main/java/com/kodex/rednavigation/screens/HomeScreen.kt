@@ -28,11 +28,15 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.kodex.rednavigation.MainViewModel
 import com.kodex.rednavigation.R
+import com.kodex.rednavigation.database.firebase.AppFirebaseRepository
 import com.kodex.rednavigation.drawer.NavRoute
 import com.kodex.rednavigation.drawer.NavRoute.Books.title
 import com.kodex.rednavigation.model.Note
 import com.kodex.rednavigation.ui.theme.RedNavigationTheme
 import com.kodex.rednavigation.utils.Constants
+import com.kodex.rednavigation.utils.LOGIN
+import com.kodex.rednavigation.utils.PASSWORD
+import com.kodex.rednavigation.utils.REPOSITORY
 import kotlinx.coroutines.launch
 
 
@@ -43,6 +47,15 @@ fun HomeScreen(navController: NavHostController, viewModel: MainViewModel) {
     val bottomSheetState = rememberModalBottomSheetState(ModalBottomSheetValue.Hidden)
     val coroutineScope = rememberCoroutineScope()
 
+    LOGIN = "dfgdfgdf@sdf.sd"
+    PASSWORD = "dfgdfgdfg"
+    REPOSITORY = AppFirebaseRepository()
+    REPOSITORY.connectToDatabase(
+        {  },
+        { Log.d("checkData", "Error4: ${it}") }
+    )
+    fun reedAllNotes() = REPOSITORY.readAll
+
     var title by remember { mutableStateOf("") }
     var subtitle by remember { mutableStateOf("") }
     var isButtonEnabled by remember { mutableStateOf(false) }
@@ -50,6 +63,7 @@ fun HomeScreen(navController: NavHostController, viewModel: MainViewModel) {
     var auth: FirebaseAuth = Firebase.auth
     title = auth.currentUser?.displayName.toString()
     Log.d("checkData1", "$notes")
+
 
     val context = LocalContext.current
     lateinit var mViewModel: MainViewModel

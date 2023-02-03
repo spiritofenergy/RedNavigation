@@ -38,6 +38,7 @@ object Constants {
     }
 
     object Keys {
+        const val URL = "https://rednavigation-fd767-default-rtdb.europe-west1.firebasedatabase.app"
         const val ENTER_LOG_IN = "Введите Email и Пароль"
         const val NOTES_DATABASE = "notes_database"
         const val NOTES_TABLE = "notes_table"

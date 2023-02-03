@@ -47,9 +47,8 @@ fun ProfileScreen(navController: NavController, viewModel: MainViewModel) {
 
     var login by remember { mutableStateOf(Keys.EMPTY) }
     var password by remember { mutableStateOf(Keys.EMPTY) }
-    var is_registeres by remember { mutableStateOf(false) }
     val context = LocalContext.current
-    var auth: FirebaseAuth = Firebase.auth
+    val auth: FirebaseAuth = Firebase.auth
 
     val launcher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.StartActivityForResult()) {
@@ -112,12 +111,7 @@ fun ProfileScreen(navController: NavController, viewModel: MainViewModel) {
                                 viewModel.initDatabase(TYPE_FIREBASE) {
                                  DB_TYPE.value = TYPE_FIREBASE
                                     navController.navigate("home")
-                                    is_registeres = true
-            Toast.makeText(context, Keys.IS_REGISTERED,
-              Toast.LENGTH_SHORT).show()
-
                                 }
-
                         },
                         colors = ButtonDefaults.buttonColors(
                             colorResource(
@@ -152,30 +146,7 @@ fun ProfileScreen(navController: NavController, viewModel: MainViewModel) {
                     textAlign = TextAlign.Center,
                     fontSize = 25.sp
                 )
-                Button(
-                    modifier = Modifier
-                        .width(300.dp)
-                        .padding(8.dp),
-                    onClick = {
-                        viewModel.initDatabase(TYPE_ROOM) {
-                            DB_TYPE.value = TYPE_ROOM
-                            navController.navigate("home")
-                        }
-                    },
-                    colors = ButtonDefaults.buttonColors(
-                        colorResource(
-                            id = R.color.colorPrimary
-                        )
-                    )
-                )
-                {
-                    Text(
-                        text = "Room",
-                        fontWeight = FontWeight.Bold,
-                        color = White,
-                        fontSize = 18.sp
-                    )
-                }
+
                 Button(
                     modifier = Modifier
                         .width(300.dp)
@@ -235,7 +206,6 @@ fun ProfileScreen(navController: NavController, viewModel: MainViewModel) {
             }
         }
     }
-
 
     @Composable
     fun ProfileScreenPreview() {

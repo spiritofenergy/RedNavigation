@@ -11,6 +11,7 @@ import com.kodex.rednavigation.utils.Constants
 import com.kodex.rednavigation.utils.Constants.Keys.ACTIVITY
 import com.kodex.rednavigation.utils.Constants.Keys.SUBTITLE
 import com.kodex.rednavigation.utils.Constants.Keys.TITLE
+import com.kodex.rednavigation.utils.Constants.Keys.URL
 import com.kodex.rednavigation.utils.FIREBASE_ID
 import com.kodex.rednavigation.utils.LOGIN
 import com.kodex.rednavigation.utils.PASSWORD
@@ -19,8 +20,8 @@ import com.kodex.rednavigation.utils.PASSWORD
 class AppFirebaseRepository : DatabaseRepository {
 
     private val auth = FirebaseAuth.getInstance()
-   private val database = Firebase.database("https://rednavigation-fd767-default-rtdb.europe-west1.firebasedatabase.app").reference
-     .child(auth.currentUser?.uid.toString())
+   private val database = Firebase.database(URL).reference
+     .child(auth.uid.toString())
 
     override val readAll: LiveData<List<Note>> = AllNotesLiveData()
 
@@ -29,8 +30,8 @@ class AppFirebaseRepository : DatabaseRepository {
         val mapNotes = hashMapOf<String, Any>()
 
         mapNotes[FIREBASE_ID] = noteId
-        mapNotes[Constants.Keys.TITLE] = note.title
-        mapNotes[Constants.Keys.SUBTITLE] = note.subtitle
+        mapNotes[TITLE] = note.title
+        mapNotes[SUBTITLE] = note.subtitle
 
         database.child(noteId)
             .updateChildren(mapNotes)

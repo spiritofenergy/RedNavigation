@@ -12,7 +12,7 @@ import com.kodex.rednavigation.model.Note
 class AllNotesLiveData: LiveData<List<Note>>() {
     private val mAuth = FirebaseAuth.getInstance()
     private val database = Firebase.database.reference
-        .child(mAuth.currentUser?.uid.toString())
+        .child(mAuth.uid.toString())
 
     private val listener = object : ValueEventListener {
         override fun onDataChange(snapshot: DataSnapshot) {

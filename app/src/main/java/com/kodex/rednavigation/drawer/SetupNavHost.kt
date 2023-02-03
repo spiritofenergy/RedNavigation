@@ -11,6 +11,7 @@ import com.kodex.rednavigation.R
 
 sealed class NavRoute(var route: String, var icon: Int, var title: String) {
     object Home : NavRoute("home", R.drawable.ic_home, "Home")
+    object Main : NavRoute("main", R.drawable.ic_home, "Main")
     object Music : NavRoute("music", R.drawable.ic_music, "Music")
     object Movies : NavRoute("movies", R.drawable.ic_movie, "Movies")
     object Books : NavRoute("books", R.drawable.ic_book, "Books")
@@ -24,7 +25,10 @@ sealed class NavRoute(var route: String, var icon: Int, var title: String) {
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun Navigation(navController: NavHostController, viewModel: MainViewModel) {
-    NavHost(navController, startDestination = NavRoute.Profile.route) {
+    NavHost(navController, startDestination = NavRoute.Home.route) {
+        composable(NavRoute.Main.route) {
+            MainScreen(navController = navController, viewModel = viewModel)
+        }
         composable(NavRoute.Home.route) {
             HomeScreen(navController = navController, viewModel = viewModel)
         }
